@@ -36,7 +36,9 @@ void TestApp::update(float delta)
 
 void TestApp::render(float delta)
 {
-	device_context->ClearRenderTargetView(render_target_view, DirectX::Colors::Chocolate);
+	float color[4] = { 0.8F, 0.0F, 0.2F, 1.0F };
+
+	device_context->ClearRenderTargetView(render_target_view, color);
 	swap_chain->Present(0, 0);
 }
 
