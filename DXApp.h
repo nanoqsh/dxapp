@@ -32,7 +32,7 @@ public:
 	DXApp(HINSTANCE hInstance);
 	virtual ~DXApp();
 
-	int run();
+	int run(); // main loop
 	virtual bool init();
 	virtual void update(float delta) = 0;
 	virtual void render(float delta) = 0;

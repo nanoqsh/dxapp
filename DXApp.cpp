@@ -197,7 +197,7 @@ bool DXApp::init_window()
 		return false;
 	}
 
-	RECT r = { 0, 0, (LONG) client_width, (LONG) client_height };
+	RECT r = { 0, 0, static_cast<LONG>(client_width), static_cast<LONG>(client_height) };
 	AdjustWindowRect(&r, window_style, FALSE);
 	UINT width = r.right - r.left;
 	UINT height = r.bottom - r.top;
