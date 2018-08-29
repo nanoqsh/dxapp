@@ -60,21 +60,17 @@ bool TestApp::init()
 	// create vertex buffer
 	D3D11_SUBRESOURCE_DATA vertex_data = { };
 	vertex_data.pSysMem = cube.vertices;
-	vertex_data.SysMemPitch = sizeof(cube.vertices);
-	vertex_data.SysMemSlicePitch = sizeof(cube.vertices);
 	device->CreateBuffer(&vertex_buffer_desc, &vertex_data, &vertex_buffer);
 
 	// create index buffer desc
 	auto index_buffer_desc = CD3D11_BUFFER_DESC(
-		sizeof(UINT) * 3 * 12,
+		sizeof(cube.indexes),
 		D3D11_BIND_INDEX_BUFFER
 	);
 
 	// create index buffer
 	D3D11_SUBRESOURCE_DATA index_data = { };
 	index_data.pSysMem = cube.indexes;
-	index_data.SysMemPitch = sizeof(cube.indexes);
-	index_data.SysMemSlicePitch = sizeof(cube.indexes);
 	device->CreateBuffer(&index_buffer_desc, &index_data, &index_buffer);
 
 	// create vertex shader
@@ -150,7 +146,7 @@ void TestApp::render(float delta)
 	device_context->IASetIndexBuffer(index_buffer, DXGI_FORMAT_R32_UINT, 0);
 
 	// draw
-	device_context->DrawIndexed(3 * 12, 0, 3);
+	device_context->DrawIndexed(ARRAYSIZE(cube.vertices), 0, 3);
 
 	swap_chain->Present(0, 0);
 }
